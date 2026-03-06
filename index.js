@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
-            header.classList.add('scrolled'); // Force dark for better visibility out of hero, or toggle
-            // Actually, given the dark theme, let's keep it solid after 50px
+            header.classList.remove('scrolled');
         }
     });
     
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 // Adjust scroll position for fixed header
                 const headerHeight = header.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', () => {
         let current = '';
-        const scrollY = window.pageYOffset;
+        const scrollY = window.scrollY;
         
         sections.forEach(section => {
             const sectionHeight = section.offsetHeight;
